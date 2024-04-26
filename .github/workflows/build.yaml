@@ -87,7 +87,7 @@ jobs:
             example-prefix: linux-x64-
           - name: aarch64
             container: docker.io/agners/aarch64-chip-build:22
-            runner: ARM64
+            runner: linux-arm64
             example-prefix: linux-arm64-
         variant: [ -libnl-no-ble ]
 
