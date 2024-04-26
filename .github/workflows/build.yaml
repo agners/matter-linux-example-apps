@@ -122,7 +122,6 @@ jobs:
         run: bash scripts/bootstrap.sh -p all,linux
       - name: Setup and run build
         run: |
-          . scripts/activate.sh
           for example in \
                 chip-tool \
                 chip-cert \
@@ -134,10 +133,12 @@ jobs:
                 refrigerator \
                 rvc \
                 thermostat ; do
-                    scripts/build/build_examples.py \
-                        --target "${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }}" \
-                        --pregen-dir ./zzz_pregenerated \
-                        build
+                    ./scripts/run_in_build_env.sh \
+                        "./scripts/build/build_examples.py \
+                            --target ${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }} \
+                            --pregen-dir ./zzz_pregenerated \
+                            build \
+                        "
                     find out/ -type f -executable -exec cp {} bin/ \;
                     rm -r out/
                 done
