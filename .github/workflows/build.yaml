@@ -127,13 +127,18 @@ jobs:
                 chip-tool \
                 chip-cert \
                 air-purifier \
-                bridge \
+                all-clusters \
+                contact-sensor \
                 dishwasher \
                 light \
                 lock \
                 refrigerator \
                 rvc \
-                thermostat ; do
+                ota-provider \
+                ota-requestor \
+                thermostat \
+                tv-app \
+                tv-casting-app ; do
                     ./scripts/run_in_build_env.sh \
                         "./scripts/build/build_examples.py \
                             --target ${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }} \
@@ -143,12 +148,12 @@ jobs:
                     find out/ -type f -executable -exec cp {} bin/ \;
                     rm -r out/
                 done
-      - name: Upload wheels as artifacts
+      - name: Upload binaries as artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: chip-wheels-linux-${{ matrix.arch.name }}
+          name: chip-linux-example-apps-${{ matrix.arch.name }}
           path: ./connectedhomeip/bin/
-      - name: Upload wheels as release assets
+      - name: Upload binaries as release assets
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
