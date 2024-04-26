@@ -122,6 +122,7 @@ jobs:
         run: bash scripts/bootstrap.sh -p all,linux
       - name: Setup and run build
         run: |
+          mkdir bin/
           for example in \
                 chip-tool \
                 chip-cert \
