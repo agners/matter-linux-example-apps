@@ -122,6 +122,7 @@ jobs:
         run: bash scripts/bootstrap.sh -p all,linux
       - name: Setup and run build
         run: |
+          . scripts/activate.sh
           for example in \
                 chip-tool \
                 chip-cert \
@@ -136,7 +137,6 @@ jobs:
                     scripts/build/build_examples.py \
                         --target "${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }}" \
                         --pregen-dir ./zzz_pregenerated \
-                        --pw-command-launcher=ccache \
                         build
                     find out/ -type f -executable -exec cp {} bin/ \;
                     rm -r out/
