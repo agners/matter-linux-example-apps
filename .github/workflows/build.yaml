@@ -47,7 +47,13 @@ jobs:
       - name: Apply patches
         working-directory: ./connectedhomeip/
         run: |
-          for patch in ../*.patch
+          patches=(../*.patch)
+          if [ ! -e "${patches[0]}" ]
+          then
+              echo "No patches found"
+              exit 0
+          fi
+          for patch in $patches
           do
               echo "Applying ${patch}"
               patch -p1 < $patch
