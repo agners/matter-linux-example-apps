@@ -74,8 +74,8 @@ jobs:
           name: matter-sdk-${{ github.run_id }}
           path: ./connectedhomeip.tar.zst
 
-  build_linux_python_lib:
-    name: Build Python wheels for Linux (${{ matrix.arch.name }})
+  build_linux_examples:
+    name: Build example apps for Linux (${{ matrix.arch.name }})
     needs: build_prepare
 
     strategy:
@@ -117,7 +117,7 @@ jobs:
           git config --global --add safe.directory "*"
       - name: Bootstrap
         run: bash scripts/bootstrap.sh -p all,linux
-      - name: Setup Build, Run Build and Run Tests
+      - name: Setup and run build
         run: |
           for example in \
                 chip-tool \
