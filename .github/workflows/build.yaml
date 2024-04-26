@@ -84,9 +84,12 @@ jobs:
           - name: x86_64
             container: ghcr.io/project-chip/chip-build:22
             runner: ubuntu-22.04
+            example-prefix: linux-x64-
           - name: aarch64
             container: docker.io/agners/aarch64-chip-build:22
             runner: ARM64
+            example-prefix: linux-arm64-
+        variant: [ -libnl-no-ble ]
 
     runs-on: ${{ matrix.arch.runner }}
     permissions:
@@ -131,7 +134,7 @@ jobs:
                 rvc \
                 thermostat ; do
                     scripts/build/build_examples.py \
-                        --target "${EXAMPLE_PREFIX}${example}${EXAMPLE_POSTFIX}" \
+                        --target "${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }}" \
                         --pregen-dir ./zzz_pregenerated \
                         --pw-command-launcher=ccache \
                         build
