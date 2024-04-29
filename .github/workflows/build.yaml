@@ -82,27 +82,32 @@ jobs:
       matrix:
         arch:
           - name: x86-64
-            container: ghcr.io/project-chip/chip-build:22
+            container: ghcr.io/project-chip/chip-build:42
             runner: ubuntu-22.04
             example-prefix: linux-x64-
           - name: aarch64
-            container: docker.io/agners/aarch64-chip-build:22
+            container: docker.io/agners/aarch64-chip-build:42
             runner: linux-arm64
             example-prefix: linux-arm64-
         include:
           - examples: >-
               air-purifier
+              air-quality-sensor
               all-clusters
+              all-clusters-minimal
               chip-cert
               chip-tool
               contact-sensor
               dishwasher
+              energy-management
               light
+              lit-icd
               lock
-              refrigerator
-              rvc
+              microwave-oven
               ota-provider
               ota-requestor
+              refrigerator
+              rvc
               thermostat
               tv-app
               tv-casting-app
