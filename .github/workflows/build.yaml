@@ -105,9 +105,9 @@ jobs:
               thermostat
               tv-app
               tv-casting-app
-            variant: [ -libnl-no-ble-no-wifi-no-thread-boringssl ]
+            variant: -libnl-no-ble-no-wifi-no-thread-boringssl
           - examples: chip-cert
-            variant: [ -libnl-no-ble-no-wifi-no-thread ]
+            variant: -libnl-no-ble-no-wifi-no-thread
 
     runs-on: ${{ matrix.arch.runner }}
     permissions:
