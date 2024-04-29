@@ -91,9 +91,10 @@ jobs:
             example-prefix: linux-arm64-
         include:
           - examples: |
-              chip-tool
               air-purifier
               all-clusters
+              chip-cert
+              chip-tool
               contact-sensor
               dishwasher
               light
@@ -106,8 +107,6 @@ jobs:
               tv-app
               tv-casting-app
             variant: -libnl-no-ble-no-wifi-no-thread-boringssl
-          - examples: chip-cert
-            variant: -libnl-no-ble-no-wifi-no-thread
 
     runs-on: ${{ matrix.arch.runner }}
     permissions:
