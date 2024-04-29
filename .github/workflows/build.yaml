@@ -81,7 +81,7 @@ jobs:
     strategy:
       matrix:
         arch:
-          - name: x86_64
+          - name: x86-64
             container: ghcr.io/project-chip/chip-build:22
             runner: ubuntu-22.04
             example-prefix: linux-x64-
@@ -151,8 +151,11 @@ jobs:
       - name: Setup and run build
         run: |
           for example in bin/*; do
+              mv "${example}" "${example}-${{ matrix.arch.name }}"
+          done
+          for example in bin/*; do
               objcopy --only-keep-debug "${example}" "${example}.debug"
-              strip -g "${example}"
+              strip --strip-debug "${example}"
               objcopy --add-gnu-debuglink="${example}.debug" "${example}"
           done
       - name: Upload binaries as artifacts
