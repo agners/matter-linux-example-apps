@@ -89,7 +89,7 @@ jobs:
             container: docker.io/agners/aarch64-chip-build:22
             runner: linux-arm64
             example-prefix: linux-arm64-
-        variant: [ -libnl-no-ble ]
+        variant: [ -libnl-no-ble-no-wifi-no-thread-boringssl ]
 
     runs-on: ${{ matrix.arch.runner }}
     permissions:
