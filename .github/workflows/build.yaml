@@ -125,7 +125,6 @@ jobs:
           mkdir bin/
           for example in \
                 chip-tool \
-                chip-cert \
                 air-purifier \
                 all-clusters \
                 contact-sensor \
