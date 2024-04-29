@@ -89,7 +89,25 @@ jobs:
             container: docker.io/agners/aarch64-chip-build:22
             runner: linux-arm64
             example-prefix: linux-arm64-
-        variant: [ -libnl-no-ble-no-wifi-no-thread-boringssl ]
+        include:
+          - examples: |
+              chip-tool
+              air-purifier
+              all-clusters
+              contact-sensor
+              dishwasher
+              light
+              lock
+              refrigerator
+              rvc
+              ota-provider
+              ota-requestor
+              thermostat
+              tv-app
+              tv-casting-app
+            variant: [ -libnl-no-ble-no-wifi-no-thread-boringssl ]
+          - examples: chip-cert
+            variant: [ -libnl-no-ble-no-wifi-no-thread ]
 
     runs-on: ${{ matrix.arch.runner }}
     permissions:
@@ -123,21 +141,7 @@ jobs:
       - name: Setup and run build
         run: |
           mkdir bin/
-          for example in \
-                chip-tool \
-                air-purifier \
-                all-clusters \
-                contact-sensor \
-                dishwasher \
-                light \
-                lock \
-                refrigerator \
-                rvc \
-                ota-provider \
-                ota-requestor \
-                thermostat \
-                tv-app \
-                tv-casting-app ; do
+          for example in ${{ matrix.examples }} ; do
                     ./scripts/run_in_build_env.sh \
                         "./scripts/build/build_examples.py \
                             --target ${{ matrix.arch.example-prefix }}${example}${{ matrix.variant }} \
