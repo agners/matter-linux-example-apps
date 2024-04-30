@@ -90,7 +90,7 @@ jobs:
             runner: linux-arm64
             example-prefix: linux-arm64-
         include:
-          - examples: >
+          - examples: >-
               air-purifier
               all-clusters
               chip-cert
