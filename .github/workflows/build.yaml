@@ -53,7 +53,7 @@ jobs:
               echo "No patches found"
               exit 0
           fi
-          for patch in $patches
+          for patch in "${patches[@]}"
           do
               echo "Applying ${patch}"
               patch -p1 < $patch
