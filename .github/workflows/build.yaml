@@ -110,7 +110,7 @@ jobs:
               thermostat
               tv-app
               tv-casting-app
-              water-leak-detector
+              water-leak-detector-app
             variant: -libnl-no-ble-no-wifi-no-thread-boringssl
 
     runs-on: ${{ matrix.arch.runner }}
