@@ -155,7 +155,7 @@ jobs:
                             --pregen-dir ./zzz_pregenerated \
                             build \
                         "
-                    find out/ -type f -executable -exec cp {} bin/ \;
+                    find out/ -maxdepth 2 -type f -executable -exec cp {} bin/ \;
                     rm -r out/
                 done
       - name: Rename and strip symbols
