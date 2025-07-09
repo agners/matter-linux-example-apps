@@ -95,7 +95,6 @@ jobs:
               all-clusters-minimal
               chip-cert
               chip-tool
-              closure
               contact-sensor
               dishwasher
               energy-gateway
