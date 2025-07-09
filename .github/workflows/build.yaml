@@ -91,7 +91,6 @@ jobs:
           - examples: >-
               air-purifier
               air-quality-sensor
-              camera
               all-clusters
               all-clusters-minimal
               chip-cert
