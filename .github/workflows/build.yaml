@@ -90,6 +90,7 @@ jobs:
         include:
           - examples: >-
               air-purifier
+              air-quality-sensor
               all-clusters
               all-clusters-minimal
               chip-cert
