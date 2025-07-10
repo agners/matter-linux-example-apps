@@ -1,0 +1,31 @@
+From 8510372c07afb8883b43e6936659a81f4996cf2d Mon Sep 17 00:00:00 2001
+Message-ID: <8510372c07afb8883b43e6936659a81f4996cf2d.1752062626.git.stefan@agner.ch>
+In-Reply-To: <773235243d7a93e4b38e85523a3dc0096b9dce4b.1752062626.git.stefan@agner.ch>
+References: <773235243d7a93e4b38e85523a3dc0096b9dce4b.1752062626.git.stefan@agner.ch>
+From: Stefan Agner <stefan@agner.ch>
+Date: Wed, 9 Jul 2025 13:55:20 +0200
+Subject: [PATCH 2/2] Fix software-fault-listener include in
+ air-quality-sensor-app
+
+Fix the air-quality-sensor-app Linux example by adding the
+software-fault-listener header as dependency just like in other
+examples. This got missed in #38914.
+---
+ examples/air-quality-sensor-app/linux/BUILD.gn | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/examples/air-quality-sensor-app/linux/BUILD.gn b/examples/air-quality-sensor-app/linux/BUILD.gn
+index 4832593f92..298d15648e 100644
+--- a/examples/air-quality-sensor-app/linux/BUILD.gn
++++ b/examples/air-quality-sensor-app/linux/BUILD.gn
+@@ -41,6 +41,7 @@ executable("air-quality-sensor-app") {
+   deps = [
+     "${chip_root}/examples/air-quality-sensor-app/air-quality-sensor-common",
+     "${chip_root}/examples/platform/linux:app-main",
++    "${chip_root}/src/app/clusters/software-diagnostics-server:software-fault-listener",
+     "${chip_root}/src/lib",
+     "${chip_root}/third_party/jsoncpp",
+   ]
+-- 
+2.50.0
+

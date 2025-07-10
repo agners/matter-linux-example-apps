@@ -5,7 +5,7 @@ on: push
 jobs:
   build_prepare:
     name: Prepare build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     outputs:
       version: ${{ steps.version.outputs.version }}
       channel: ${{ steps.version.outputs.channel }}
@@ -82,10 +82,10 @@ jobs:
       matrix:
         arch:
           - name: x86-64
-            runner: ubuntu-22.04
+            runner: ubuntu-24.04
             example-prefix: linux-x64-
           - name: aarch64
-            runner: linux-arm64
+            runner: ubuntu-24.04-arm
             example-prefix: linux-arm64-
         include:
           - examples: >-
@@ -97,17 +97,21 @@ jobs:
               chip-tool
               contact-sensor
               dishwasher
+              energy-gateway
               energy-management
               light
               lock
               microwave-oven
+              network-manager
               ota-provider
               ota-requestor
               refrigerator
               rvc
+              terms-and-conditions
               thermostat
               tv-app
               tv-casting-app
+              water-leak-detector
             variant: -libnl-no-ble-no-wifi-no-thread-boringssl
 
     runs-on: ${{ matrix.arch.runner }}
@@ -149,7 +153,7 @@ jobs:
                             --pregen-dir ./zzz_pregenerated \
                             build \
                         "
-                    find out/ -type f -executable -exec cp {} bin/ \;
+                    find out/ -maxdepth 2 -type f -executable -exec cp {} bin/ \;
                     rm -r out/
                 done
       - name: Rename and strip symbols
